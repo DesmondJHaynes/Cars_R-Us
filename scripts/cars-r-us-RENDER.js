@@ -1,7 +1,10 @@
+import { addToOrders } from "./database.js";
 import { selectInterior } from "./interiors.js";
+import { orders } from "./orders.js";
 import { selectPaint } from "./paints.js";
 import { selectTech } from "./technologies.js";
 import { selectWheels } from "./wheels.js";
+
 
 export const renderHtml = () => {
     let html = `
@@ -42,9 +45,11 @@ export const renderHtml = () => {
         </article>
 
         <section id="orderLIst">
-    
+            <h2 class="Orders">Current Orders</h2>
+            <ul>
+            ${orders()}
+            </ul>
         </section>
-          
 `
 
     return html;

@@ -4,36 +4,44 @@ const database = {
     paint : [
         {
             id: 1,
-            color: "red"
+            color: "red",
+            price: 10.75
         },
         {
             id: 2,
-            color: "white"
+            color: "white",
+            price: 10.75
         },
         {
             id: 3,
-            color: "blue"
+            color: "blue",
+            price: 10.75
         },
         {
             id: 4,
-            color: "black"
+            color: "black",
+            price: 20.50
         },
         {
             id: 5,
-            color: "silver"
+            color: "silver",
+            price: 80.25
         },
     ],
     tech: [
         {
             id: 1,
+            price: 250.00, 
             package: "Basic"
         },
         {
             id: 2,
+            price: 500.01, 
             package: "Gold Standard Plus"
         },
         {
             id: 3,
+            price: 1000.02, 
             package: "Ultra Suite Platinum"
         },
         
@@ -41,32 +49,39 @@ const database = {
     interior: [
         {
             id: 1,
+            price: 25,
             interior: "I'm too broke to be buying"
         },
         {
             id: 2,
+            price: 750,
             interior: "Mid-Tier Fabric"
         },
         {
             id: 3,
+            price: 1500,
             interior: "Premium Leather"
         },
         {
             id: 4,
+            price: 9999,
             interior: "Baby Panda Fur"
         },
     ],
     wheels: [
         {
             id: 1,
+            price: 120,
             size: "18in (xL Pizza)"
         },
         {
             id: 2,
+            price: 250,
             size: "20in (2xL Pizza)"
         },
         {
             id: 3,
+            price: 400,
             size: "24in (MosterTruck)"
         },
     ],
@@ -140,17 +155,30 @@ export const ChangeEventListener = (targetId,targetArrLIst,idTitle) => {
 }
 
 //Change State
+export const addToOrders = () => {
+    const newOrder = {...database.tempStorage}
+
+    let lastIndex = database.orders.length -1
+    newOrder.id = database.orders[lastIndex].id +1
+    newOrder.timestamp = Date.now()
+
+    database.orders.push(newOrder)
+
+    database.tempStorage = {}
+
+    console.log(database.orders)
+
+    document.dispatchEvent(new CustomEvent("stateChange"))
+}
+
+
 document.addEventListener("click", event => {
     if (event.target.id === "save-order") {
-        let newOrder = {...database.tempStorage}
-
-        let lastIndex = database.orders.length -1
-        newOrder.id = lastIndex +1
-        newOrder.timestamp = Date.now()
-
-        database.orders.push(newOrder)
-
-        database.tempStorage = {}
-    }
-}
-)
+        if (database.tempStorage.paintId &&
+            database.tempStorage.techId &&
+            database.tempStorage.sizeId &&
+            database.tempStorage.interiorId) {
+        console.log(`click event`)
+        addToOrders();
+    }}
+})
