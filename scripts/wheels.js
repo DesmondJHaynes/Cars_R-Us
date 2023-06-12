@@ -1,8 +1,15 @@
-import { getWheels } from "./database.js";
+import { ChangeEventListener, getWheels } from "./database.js";
 
 const wheels = getWheels();
 
 
 export const selectWheels = () => {
-    console.log(`<div class="wheels"></div>`)
+    const wheelOptions = wheels.map((wheel)=>{
+
+        return `<option value="${wheel.id}">${wheel.size}</option>`
+    })
+
+    return wheelOptions
 }
+
+ChangeEventListener("wheels__select",wheels,"sizeId")
