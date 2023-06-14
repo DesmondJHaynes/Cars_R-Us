@@ -8,6 +8,7 @@ import { selectWheels } from "./wheels.js";
 
 export const renderHtml = () => {
     let html = `
+        <section class="Selecters space">
         <div class="Interiors">
             <h2 class="Interiors">Interiors</h2>
             <select id="interior__select">
@@ -39,12 +40,12 @@ export const renderHtml = () => {
                 ${selectTech()}
             </select>
         </div> 
-
+        </section>
         <article>
             <button id="save-order">Place Your Order</button>
         </article>
 
-        <section id="orderLIst">
+        <section id="orderList">
             <h2 class="Orders">Current Orders</h2>
             <ul>
             ${orders()}

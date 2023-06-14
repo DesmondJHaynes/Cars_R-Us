@@ -1,4 +1,4 @@
-import { addToOrders, getInterior, getOrders, getPaint, getTech, getWheels } from "./database.js"
+import {getInterior, getOrders, getPaint, getTech, getWheels } from "./database.js"
 
 const paints = getPaint()
 const techs = getTech()

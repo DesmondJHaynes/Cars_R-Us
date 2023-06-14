@@ -127,11 +127,11 @@ export const orderBuilder = (idTitle,id) => {
 
 // Utility Functions
 
-export const windowAlert = (object, value) => {
+const windowAlert = (object, value) => {
     window.alert(`You chose ${object[value]}`)
 }
 
-export const pickoption = (eventTargetValue, objArr) => {
+const pickoption = (eventTargetValue, objArr) => {
     for (const obj of objArr) {
         if (obj.id === parseInt(eventTargetValue)) {
             return obj;
@@ -178,7 +178,6 @@ document.addEventListener("click", event => {
             database.tempStorage.techId &&
             database.tempStorage.sizeId &&
             database.tempStorage.interiorId) {
-        console.log(`click event`)
         addToOrders();
     }}
 })

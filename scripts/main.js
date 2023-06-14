@@ -19,6 +19,6 @@ const render = () => {
 render()
 
 document.addEventListener("stateChange", e => {
-    console.log(`state change`)
+   //this is necessary to change the state
     render();
 })
